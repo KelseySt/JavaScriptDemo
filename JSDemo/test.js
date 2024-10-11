@@ -74,9 +74,25 @@ console.log(flavorOne + " " + flavorTwo); // Vanilla Chocolate
 // JavaScript Promises are arynchronous operations that produce a resolve or reject state, ex:
 const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-        if (x >= 1) {
-            resolve('Hello, x is greater than 1!')
+        if ("some condition") {
+            resolve("Success!")
         }
-        reject("Error, x is less than 1!")
+        reject("Error message")
     }, 1000)
 })
+
+// Promises can become complicated, so async/await is another way to handle making Promises, here's a combo of both
+const delayBkrdChange = (color) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            document.body.style.backgroundColor = color;
+            resolve();
+        }, 10000)
+    })
+}
+
+// This function calls delayBkrdChange and waits for the promise to return resolved until running the next
+async function rainbow() {
+    await delayBkrdChange('red')
+    await delayBkrdChange('orange')
+}
